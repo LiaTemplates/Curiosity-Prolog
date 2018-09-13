@@ -11,7 +11,7 @@ script:   https://curiosity-driven.github.io/prolog-interpreter/parser.js
 
 @prolog_db
 <script>
-var rules = parser(lexer(`@code`)).parseRules();
+var rules = parser(lexer(`@input`)).parseRules();
 window['@0'] = new Database(rules);
 "database loaded";
 </script>
@@ -20,7 +20,7 @@ window['@0'] = new Database(rules);
 @prolog_shell
 <script>
 var rslt = "";
-var goal = parser(lexer(`@code`)).parseTerm();
+var goal = parser(lexer(`@input`)).parseTerm();
 for (var item of window['@0'].query(goal)) {
     rslt += "Yes: " + item + "<br>";
 }
@@ -67,7 +67,7 @@ parent_child(X, Y) :- father_child(X, Y).
 parent_child(X, Y) :- mother_child(X, Y).
 ```
 <script>
-var rules = parser(lexer(`@code`)).parseRules();
+var rules = parser(lexer(`@input`)).parseRules();
 window['prolog_db'] = new Database(rules);
 
 "database loaded";
@@ -81,7 +81,7 @@ sibling(sally, erica).
 <script>
 var rslt = "";
 
-var goal = parser(lexer(`@code`)).parseTerm();
+var goal = parser(lexer(`@input`)).parseTerm();
 
 for (var item of window.prolog_db.query(goal)) {
     rslt += "Yes: " + item + "<br>";
