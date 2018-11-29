@@ -9,7 +9,7 @@ narrator: US English Female
 script:   https://curiosity-driven.github.io/prolog-interpreter/parser.js
           https://curiosity-driven.github.io/prolog-interpreter/interpreter.js
 
-@prolog_db
+@prolog.db
 <script>
 var rules = parser(lexer(`@input`)).parseRules();
 window['@0'] = new Database(rules);
@@ -17,12 +17,12 @@ window['@0'] = new Database(rules);
 </script>
 @end
 
-@prolog_shell
+@prolog.shell
 <script>
 var rslt = "";
 var goal = parser(lexer(`@input`)).parseTerm();
 for (var item of window['@0'].query(goal)) {
-    rslt += "Yes: " + item + "<br>";
+    rslt += "Yes: " + item + "\n";
 }
 if (rslt === "") {
    'No';
@@ -32,17 +32,17 @@ if (rslt === "") {
 </script>
 @end
 
-@prolog_ui
+@prolog.ui
 ```prolog
 @2
 ```
-@prolog_db(@0)
+@prolog.db(@0)
 
 
 ```prolog
 @1
 ```
-@prolog_shell(@0)
+@prolog.shell(@0)
 @end
 -->
 
@@ -84,7 +84,7 @@ var rslt = "";
 var goal = parser(lexer(`@input`)).parseTerm();
 
 for (var item of window.prolog_db.query(goal)) {
-    rslt += "Yes: " + item + "<br>";
+    rslt += "Yes: " + item + "\n";
 }
 
 if (rslt === "") {
@@ -109,19 +109,18 @@ sibling(X, Y)      :- parent_child(Z, X), parent_child(Z, Y).
 parent_child(X, Y) :- father_child(X, Y).
 parent_child(X, Y) :- mother_child(X, Y).
 ```
-@prolog_db(db_name_whatever)
+@prolog.db(db_name_whatever)
 
 ** Queries **
 
 ```prolog
 sibling(sally, erica).
 ```
-@prolog_shell(db_name_whatever)
+@prolog.shell(db_name_whatever)
 
 ## Full-Macro
 
-```prolog
-@prolog_ui(db_full_etc,`sibling(sally, erica).`)
+```prolog @prolog.ui(db_full_etc,`sibling(sally, erica).`)
 mother_child(trude, sally).
 
 father_child(tom, sally).
